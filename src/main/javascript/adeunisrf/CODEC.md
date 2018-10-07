@@ -8,9 +8,16 @@ ISM Bands: eu868, us915
 
 ## Field Test Device
 * Class : A, C
-* Measurements: temperature, humidity, pressure, latitude, longitude, downlink snr/rssi
+* Measurements: temperature, humidity, latitude, longitude, downlink snr/rssi, button
 * Website: https://www.adeunis.com/en/produit/ftd-868-915-2/
 * Specification:
+
+## DemoMote
+* Class : A, C
+* Measurements: temperature, humidity, latitude, longitude, downlink snr/rssi, button
+* Website:
+* Specification:
+* Status: retired
 
 ## Sensor
 * Class : A
