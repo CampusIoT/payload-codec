@@ -6,4 +6,5 @@ Languages: Javascript, Java, Python, Go, C++
 
 ## Usage
 # Javascript
-NodeRED, loraserver.io https://www.loraserver.io/lora-app-server/use/applications/#custom-javascript-codec-functions
+* NodeRED
+* loraserver.io https://www.loraserver.io/lora-app-server/use/applications/#custom-javascript-codec-functions
