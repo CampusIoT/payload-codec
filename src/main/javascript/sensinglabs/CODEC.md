@@ -1,18 +1,18 @@
-# Codec for ENDPOINT manufacturer
+# Codec for Sensing Labs manufacturer
 
-Manufacturer website:
+Manufacturer website: https://sensing-labs.com/products/lorawan-sensors/
 
-Networks: LoRaWAN, Sigfox, NB-IoT, LTE-M
+Networks: LoRaWAN
 
-ISM Bands: eu433, eu868, cn470, us915, au915, in865, kr920, as923, w2500
+ISM Bands: eu868
 
-## MODEL
-* Measurements:
+## Senlab H
+* Measurements: temperature, humidity
 * Website:
 * Specification:
-* Class:
-* Networks:
-* Bands:
+* Class: A
+* Networks: LoRaWAN
+* Bands: eu868
 * Status: end of life, retired, ...
 * Enclosure: indoor, outdoor (IP67), ...
 * Source code:

@@ -1,12 +1,12 @@
-# Codec for ENDPOINT manufacturer
+# Codec for Multitech manufacturer
 
 Manufacturer website:
 
-Networks: LoRaWAN, Sigfox, NB-IoT, LTE-M
+Networks: LoRaWAN
 
 ISM Bands: eu433, eu868, cn470, us915, au915, in865, kr920, as923, w2500
 
-## MODEL
+## mDot
 * Measurements:
 * Website:
 * Specification:
