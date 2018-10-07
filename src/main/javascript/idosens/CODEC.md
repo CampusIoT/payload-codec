@@ -1,21 +1,19 @@
-# Codec for Allora endpoints
+# Codec for Idosens manufacturer
 
-Manufacturer website: http://www.alloralivinglab.org/
+Manufacturer website: https://www.idosens.com/
 
 Networks: LoRaWAN
 
-ISM Bands: eu868
-
-## Pirio
+## Idosens Solo
 * Class : A
-* Measurements: presence (PIR)
-* Website: http://www.alloralivinglab.org/products/pirio/
+* Measurements: motion, temperature, humidity, light
+* Website: https://www.idosens.com/content/25-idosens_solo
 * Specification:
 
-## Humidi
+## BykeSens
 * Class : A
-* Measurements: temperature, humidity
-* Website: http://www.alloralivinglab.org/products/humidi-indoor/
+* Measurements: motion, temperature
+* Website: https://www.idosens.com/content/26-bikesens
 * Specification:
 
 # Disclaimer

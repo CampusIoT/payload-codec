@@ -1,21 +1,11 @@
-# Codec for Allora endpoints
+# Codec for Atim endpoints
 
-Manufacturer website: http://www.alloralivinglab.org/
+Manufacturer website: http://www.atim.com/fr/technologies/lorawan/
 
-Networks: LoRaWAN
-
-ISM Bands: eu868
-
-## Pirio
-* Class : A
-* Measurements: presence (PIR)
-* Website: http://www.alloralivinglab.org/products/pirio/
-* Specification:
-
-## Humidi
-* Class : A
-* Measurements: temperature, humidity
-* Website: http://www.alloralivinglab.org/products/humidi-indoor/
+## MODEL
+* Class : A, B, C
+* Measurements:
+* Website:
 * Specification:
 
 # Disclaimer

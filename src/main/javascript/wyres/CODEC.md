@@ -1,21 +1,11 @@
-# Codec for Allora endpoints
+# Codec for Wyres endpoints
 
-Manufacturer website: http://www.alloralivinglab.org/
+Manufacturer website: http://www.wyres.eu/
 
-Networks: LoRaWAN
-
-ISM Bands: eu868
-
-## Pirio
+## Wyreless
 * Class : A
-* Measurements: presence (PIR)
-* Website: http://www.alloralivinglab.org/products/pirio/
-* Specification:
-
-## Humidi
-* Class : A
-* Measurements: temperature, humidity
-* Website: http://www.alloralivinglab.org/products/humidi-indoor/
+* Measurements:
+* Website:
 * Specification:
 
 # Disclaimer

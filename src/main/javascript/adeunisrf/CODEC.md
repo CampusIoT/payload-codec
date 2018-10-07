@@ -1,8 +1,40 @@
-# Codec for ENDPOINT manufacturer
+# Codec for Adeunis RF endpoints
 
-Manufacturer website:
+Manufacturer website: https://www.adeunis.com/en/produits/products/
 
-## MODEL
-* Measurements:
+Networks: LoRaWAN, Sigfox
+
+ISM Bands: eu868, us915
+
+## Field Test Device
+* Class : A, C
+* Measurements: temperature, humidity, pressure, latitude, longitude, downlink snr/rssi
+* Website: https://www.adeunis.com/en/produit/ftd-868-915-2/
+* Specification:
+
+## Sensor
+* Class : A
+* Measurements: 2 channels for analogic, digital, dry contact
 * Website:
 * Specification:
+
+## Pulse
+* Class : A
+* Measurements: 2 channels for pulse smartmeters (water, gas, electricity)
+* Website:
+* Specification:
+
+## Temp
+* Class : A
+* Measurements: internal temperature, external temperature
+* Website:
+* Specification:
+
+## Modbus
+* Class : A, C
+* Measurements: internal temperature, external temperature
+* Website:
+* Specification:
+
+# Disclaimer
+This disclaimer informs readers that the information written in the text belong solely to the author, and not necessarily to the author’s employer, organization, committee or other group or individual. The author try to gather synthetic and accurate information about the manufacturer's endpoints. Endpoint manufacturer are welcome to pull a request in order to correct and to improve this text.

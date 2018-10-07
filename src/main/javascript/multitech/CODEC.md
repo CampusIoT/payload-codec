@@ -1,22 +1,22 @@
-# Codec for Allora endpoints
+# Codec for ENDPOINT manufacturer
 
-Manufacturer website: http://www.alloralivinglab.org/
+Manufacturer website:
 
-Networks: LoRaWAN
+Networks: LoRaWAN, Sigfox, NB-IoT, LTE-M
 
-ISM Bands: eu868
+ISM Bands: eu433, eu868, cn470, us915, au915, in865, kr920, as923, w2500
 
-## Pirio
-* Class : A
-* Measurements: presence (PIR)
-* Website: http://www.alloralivinglab.org/products/pirio/
+## MODEL
+* Measurements:
+* Website:
 * Specification:
-
-## Humidi
-* Class : A
-* Measurements: temperature, humidity
-* Website: http://www.alloralivinglab.org/products/humidi-indoor/
-* Specification:
+* Class:
+* Networks:
+* Bands:
+* Status: end of life, retired, ...
+* Enclosure: indoor, outdoor (IP67), ...
+* Source code:
+* Remark:
 
 # Disclaimer
 This disclaimer informs readers that the information written in the text belong solely to the author, and not necessarily to the author’s employer, organization, committee or other group or individual. The author try to gather synthetic and accurate information about the manufacturer's endpoints. Endpoint manufacturer are welcome to pull a request in order to correct and to improve this text.
