@@ -1,3 +1,9 @@
+//*****************************************************************************
+// Javascript codec functions for Adeunis DemoMote endpoints
+// Authors: Didier Donsez, Vivien Quéma
+// Licence: EPL 1.0
+//*****************************************************************************
+
 // Derived from http://stackoverflow.com/a/8545403/106786
 function decodeFloat(bytes, pos, size, signBits, exponentBits, fractionBits, eMin, eMax, littleEndian) {
   var totalBits = (signBits + exponentBits + fractionBits);
@@ -44,6 +50,16 @@ function readFloat(bytes, pos) {
       return decodeFloat(bytes, pos, 4, 1, 8, 23, -126, 127, true);
 }
 
+// For TTN
+// Decode decodes an array of bytes into an object.
+//  - bytes is an array of bytes, e.g. [225, 230, 255, 0]
+//  - fPort contains the LoRaWAN fPort number
+// The function must return an object, e.g. {"temperature": 22.5}
+function Decoder(bytes, fPort) {
+  return Decode(fPort, bytes);
+}
+
+// For LoRaServer.io
 // Decode decodes an array of bytes into an object.
 //  - fPort contains the LoRaWAN fPort number
 //  - bytes is an array of bytes, e.g. [225, 230, 255, 0]

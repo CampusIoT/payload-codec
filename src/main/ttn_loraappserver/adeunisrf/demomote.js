@@ -103,10 +103,20 @@ AdeunisRF_ARF8084BA_Motev10_Payload = {
   }
 }
 
+// For LoRaServer.io
 // Decode decodes an array of bytes into an object.
 //  - bytes is an array of bytes, e.g. [225, 230, 255, 0]
 //  - fPort contains the LoRaWAN fPort number
 // The function must return an object, e.g. {"temperature": 22.5}
 function Decoder(bytes, fPort) {
   return AdeunisRF_ARF8084BA_Motev10_Payload.decodeUp(fPort,bytes);
+}
+
+// For LoRaServer.io
+// Decode decodes an array of bytes into an object.
+//  - fPort contains the LoRaWAN fPort number
+//  - bytes is an array of bytes, e.g. [225, 230, 255, 0]
+// The function must return an object, e.g. {"temperature": 22.5}
+function Decode(fPort, bytes) {
+  return Decoder(bytes, fPort)
 }
