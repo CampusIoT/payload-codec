@@ -81,6 +81,11 @@ function readInt8 (buf, offset) {
   return ((0xff - buf[offset] + 1) * -1)
 }
 
+function readUInt8 (buf, offset) {
+  offset = offset >>> 0
+  return (buf[offset] && 0xff)
+}
+
 /*
 
 // Decode the latitude returned by the Semtech LoRaMote.
