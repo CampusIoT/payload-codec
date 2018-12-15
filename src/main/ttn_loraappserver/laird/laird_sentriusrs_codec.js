@@ -34,7 +34,7 @@ function convertTempUnits( tDec ,  tInt ){
 
     // the fractional portion of the number is unsigned and represents the part of the temp
     // after the base 10 decimal point
-    let t = tInt + (tDec * Math.sign(tInt)) / 100;
+    var t = tInt > 0 ? tInt + (tDec) / 100 : tInt - (tDec) / 100;
 
     // if the global flag for using degreesFahenheit is set convert the units
     /*
@@ -60,13 +60,13 @@ Laird_Sentrius_RS_Payload = {
 
     'decodeUp': function (port,payload) {
 
-        const MSGTYPE_SendTempRHData = 0x01;
-        const MSGTYPE_SendTempRHAggregatedData = 0x02;
-        const MSGTYPE_Config = 0x03;
-        const MSGTYPE_SendBackLogMessages = 0x04;
-        const MSGTYPE_SendSensorConfigSimple = 0x05;
-        const MSGTYPE_SendSensorConfigAdvanced = 0x06;
-        const MSGTYPE_SendFWVersion = 0x07;
+        var MSGTYPE_SendTempRHData = 0x01;
+        var MSGTYPE_SendTempRHAggregatedData = 0x02;
+        var MSGTYPE_Config = 0x03;
+        var MSGTYPE_SendBackLogMessages = 0x04;
+        var MSGTYPE_SendSensorConfigSimple = 0x05;
+        var MSGTYPE_SendSensorConfigAdvanced = 0x06;
+        var MSGTYPE_SendFWVersion = 0x07;
 
         var value = {};
 
