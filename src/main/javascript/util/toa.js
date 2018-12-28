@@ -11,12 +11,7 @@
  * @TODO add FSK500 Time On Air
  * @class
  */
-var TimeOnAir = (function () {
-    function TimeOnAir() {
-    }
-    TimeOnAir.getLoRaWANTimeOnAir$int$int$int = function (payloadLen, optionsLen, lorawanDataRate) {
-        return TimeOnAir.getLoRaWANTimeOnAir$int$int(13 + payloadLen + optionsLen, lorawanDataRate);
-    };
+var TimeOnAir = {
     /**
      * get the time on air in ms for a LoRaWAN data frame
      *
@@ -29,7 +24,7 @@ var TimeOnAir = (function () {
      * @return
      * @return {number}
      */
-    TimeOnAir.getLoRaWANTimeOnAir = function (payloadLen, optionsLen, lorawanDataRate) {
+    getLoRaWANTimeOnAir : function (payloadLen, optionsLen, lorawanDataRate) {
         if (((typeof payloadLen === 'number') || payloadLen === null) && ((typeof optionsLen === 'number') || optionsLen === null) && ((typeof lorawanDataRate === 'number') || lorawanDataRate === null)) {
             return TimeOnAir.getLoRaWANTimeOnAir$int$int$int(payloadLen, optionsLen, lorawanDataRate);
         }
@@ -38,8 +33,11 @@ var TimeOnAir = (function () {
         }
         else
             throw new Error('invalid overload');
-    };
-    TimeOnAir.getLoRaWANTimeOnAir$int$int = function (frameLen, lorawanDataRate) {
+    },
+    getLoRaWANTimeOnAir$int$int$int : function (payloadLen, optionsLen, lorawanDataRate) {
+        return TimeOnAir.getLoRaWANTimeOnAir$int$int(13 + payloadLen + optionsLen, lorawanDataRate);
+    },
+    getLoRaWANTimeOnAir$int$int : function (frameLen, lorawanDataRate) {
         if (lorawanDataRate === 7) {
             return TimeOnAir.getFSKTimeOnAir(frameLen, 50000);
         }
@@ -51,7 +49,7 @@ var TimeOnAir = (function () {
             var header = true;
             return TimeOnAir.getLoRaTimeOnAir(frameLen, 8, bandwidth, sf, lowDatarateOptimize, header, coderate);
         }
-    };
+    },
     /**
      * get the time on air in ms for a LoRa packet
      *
@@ -76,7 +74,7 @@ var TimeOnAir = (function () {
      * @return {number} the time on air
      * @private
      */
-    /*private*/ TimeOnAir.getLoRaTimeOnAir = function (pktLen, preambleLen, bandwidth, SF, lowDatarateOptimize, header, coderate) {
+    /*private*/ getLoRaTimeOnAir : function (pktLen, preambleLen, bandwidth, SF, lowDatarateOptimize, header, coderate) {
         var rs = bandwidth / (1 << SF);
         var ts = 1 / rs;
         var tPreamble = (preambleLen + 4.25) * ts;
@@ -86,7 +84,7 @@ var TimeOnAir = (function () {
         var tOnAir = tPreamble + tPayload;
         var airTime = Math.floor(tOnAir * 1000 + 0.999);
         return airTime;
-    };
+    },
     /**
      * get the time on air in ms for a FSK packet
      * @param {number} pktLen
@@ -94,19 +92,13 @@ var TimeOnAir = (function () {
      * @return {number}
      * @private
      */
-    /*private*/ TimeOnAir.getFSKTimeOnAir = function (pktLen, bitrate) {
+    getFSKTimeOnAir : function (pktLen, bitrate) {
         var airTime = ((pktLen + 5 + 3 + 1 + 2) * 8) * 1000 / bitrate;
         return airTime;
-    };
-    TimeOnAir.main = function (args) {
+    }
+};
 
-        var payload = parseInt(process.argv[2],10);
-        for (var i = 0; i <= 7; i++) {
-            console.info(i + " : " + TimeOnAir.getLoRaWANTimeOnAir$int$int$int(payload, 0, i));
-        }
-        ;
-    };
-    return TimeOnAir;
-}());
-TimeOnAir["__class"] = "TimeOnAir";
-TimeOnAir.main(null);
+    var payload = parseInt(process.argv[2],10);
+    for (var dr = 0; dr <= 7; dr++) {
+        console.info(dr + " : " + TimeOnAir.getLoRaWANTimeOnAir(payload, 0, dr));
+    }
