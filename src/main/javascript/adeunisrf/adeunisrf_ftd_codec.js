@@ -34,7 +34,7 @@ AdeunisRF_ARF8123AA_FieldTestDevice_Payload = {
 
     // decode Adeunis payload
 
-    if(flags & 0x80 !== 0) {
+    if((flags & 0x80) !== 0) {
           var temperature = p.readInt8(index++); // in °C
           value["temperature"]=temperature;
         }
@@ -67,25 +67,25 @@ AdeunisRF_ARF8123AA_FieldTestDevice_Payload = {
 
       }
 
-    if(flags & 0x08 !== 0) {
+    if((flags & 0x08) !== 0) {
           var uplinkCounter=p.readUInt8(index++);
           value["uplinkCounter"]=uplinkCounter;
       }
 
-    if(flags & 0x04 !== 0) {
+    if((flags & 0x04) !== 0) {
           var downlinkCounter=p.readUInt8(index++);
           value["downlinkCounter"]=downlinkCounter;
       }
 
-    if(flags & 0x02 !== 0) {
+    if((flags & 0x02) !== 0) {
           var batteryVoltage = p.readInt16BE(index); // in mV
           index = index + 2;
           value["batteryVoltage"]=batteryVoltage;
     }
 
-    if(flags & 0x01 !== 0) {
+    if((flags & 0x01) !== 0) {
           var rssi = p.readUInt8(index++); // in dB absolute value
-          var snr = p.readUInt8(index++); // in dB, signed
+          var snr = p.readInt8(index++); // in dB, signed
           value["rssi"]= - rssi;
           value["snr"]=snr;
     }

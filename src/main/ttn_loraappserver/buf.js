@@ -83,7 +83,7 @@ function readInt8 (buf, offset) {
 
 function readUInt8 (buf, offset) {
   offset = offset >>> 0
-  return (buf[offset] && 0xff)
+  return (buf[offset])
 }
 
 /*

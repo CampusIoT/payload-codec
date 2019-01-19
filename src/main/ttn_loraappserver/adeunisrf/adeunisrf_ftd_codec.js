@@ -18,10 +18,10 @@ function readInt8 (buf, offset) {
 
 function readUInt8 (buf, offset) {
   offset = offset >>> 0
-  return (buf[offset] && 0xff)
+  return (buf[offset])
 }
 
-// https://www.adeunis.com/wp-content/uploads/2017/08/ARF8123AA_ADEUNIS_LORAWAN_FTD_UG_V1.2.0_FR_GB.pdf
+// https://www.adeunis.com/wp-content/uploads/2017/08/FTD_LoRaWAN_EU863-870_UG_FR_GB_V1.2.2.pdf
 AdeunisRF_ARF8123AA_FieldTestDevice_Payload = {
   'decodeUp': function (port,payload) {
 
@@ -51,7 +51,7 @@ AdeunisRF_ARF8123AA_FieldTestDevice_Payload = {
 
     // decode Adeunis payload
 
-    if(flags & 0x80 !== 0) {
+    if((flags & 0x80) !== 0) {
           var temperature = readInt8(p,index++); // in °C
           value["temperature"]=temperature;
         }
@@ -84,25 +84,25 @@ AdeunisRF_ARF8123AA_FieldTestDevice_Payload = {
 
       }
 
-    if(flags & 0x08 !== 0) {
+    if((flags & 0x08) !== 0) {
           var uplinkCounter=readUInt8(p,index++);
           value["uplinkCounter"]=uplinkCounter;
       }
 
-    if(flags & 0x04 !== 0) {
+    if((flags & 0x04) !== 0) {
           var downlinkCounter=readUInt8(p,index++);
           value["downlinkCounter"]=downlinkCounter;
       }
 
-    if(flags & 0x02 !== 0) {
+    if((flags & 0x02) !== 0) {
           var batteryVoltage = readInt16BE(p,index); // in mV
           index = index + 2;
           value["batteryVoltage"]=batteryVoltage;
     }
 
-    if(flags & 0x01 !== 0) {
+    if((flags & 0x01) !== 0) {
           var rssi = readUInt8(p,index++); // in dB absolute value
-          var snr = readUInt8(p,index++); // in dB, signed
+          var snr = readInt8(p,index++); // in dB, signed
           value["rssi"]= - rssi;
           value["snr"]=snr;
     }
@@ -134,3 +134,6 @@ function Decoder(bytes, fPort) {
 function Decode(fPort, bytes) {
   return Decoder(bytes, fPort)
 }
+
+module.exports.Decoder = Decoder;
+module.exports.Decode = Decode;
