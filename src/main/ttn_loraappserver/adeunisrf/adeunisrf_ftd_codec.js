@@ -117,7 +117,7 @@ AdeunisRF_ARF8123AA_FieldTestDevice_Payload = {
   }
 }
 
-// For LoRaServer.io
+// For TTN
 // Decode decodes an array of bytes into an object.
 //  - bytes is an array of bytes, e.g. [225, 230, 255, 0]
 //  - fPort contains the LoRaWAN fPort number
@@ -135,5 +135,5 @@ function Decode(fPort, bytes) {
   return Decoder(bytes, fPort)
 }
 
-module.exports.Decoder = Decoder;
-module.exports.Decode = Decode;
+//module.exports.Decoder = Decoder;
+//module.exports.Decode = Decode;
