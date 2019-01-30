@@ -65,8 +65,10 @@ AdeunisRF_ARF8123AA_FieldTestDevice_Payload = {
                           + (((p[index]&0xF0) >> 4) /1000)
                           ;
           var latitude = (latdegrees + (latminutes / 60));
-          if((p[index++]&0x01)==1) latitude=-latitude;
-          value["latitude"]=latitude;
+          if(latitude <= 90) {
+            if((p[index++]&0x01)==1) latitude=-latitude;
+            value["latitude"]=latitude;
+          }
 
           var londegrees=(((p[index]&0xF0) >> 4) * 100) + ((p[index++]&0x0F)* 10) + ((p[index]&0xF0) >> 4);
           var lonminutes= ((p[index++]&0x0F) * 10)
@@ -75,8 +77,10 @@ AdeunisRF_ARF8123AA_FieldTestDevice_Payload = {
                           + (((p[index]&0xF0) >> 4) /100)
                           ;
           var longitude = (londegrees + (lonminutes / 60));
-          if((p[index++]&0x01)==1) longitude=-longitude;
-          value["longitude"]=longitude;
+          if(longitude <= 180) {
+            if((p[index++]&0x01)==1) longitude=-longitude;
+            value["longitude"]=longitude;
+          }
 
           var gpsquality = readUInt8(p,index++);
           value["satellites"]=gpsquality&0x0F;
