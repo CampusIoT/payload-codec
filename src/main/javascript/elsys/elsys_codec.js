@@ -46,7 +46,7 @@ Elsys_Payload = {
     const TYPE_ACCELERATION = 0x03;
     const TYPE_LIGHT = 0x04;
     const TYPE_MOTION_PIR = 0x05;
-    const TYPE_CO2 = 0x06;
+    const TYPE_CO2_PPM = 0x06;
     const TYPE_BATTERY_MV = 0x07;
     const TYPE_ANALOG1 = 0x08;
     const TYPE_GPS = 0x09;
@@ -159,6 +159,19 @@ Elsys_Payload = {
                     value.batteryVoltage = v;
                 }
                 break;
+            case TYPE_CO2_PPM:
+                  v = payload.readInt16BE(idx);
+                  idx += 2;
+                  if(value.co2ppm) {
+                      if(value.co2ppms === undefined) {
+                          value.co2ppms = [];
+                          value.co2ppms.push(value.co2ppm);
+                      }
+                      value.co2ppms.push(v);
+                  } else {
+                      value.co2ppms = v;
+                  }
+                  break;
             case TYPE_PRESSURE:
                 v = payload.readInt32BE(idx);
                 idx += 4;
