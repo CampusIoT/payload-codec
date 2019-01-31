@@ -102,3 +102,5 @@ AdeunisRF_ARF8084BA_Motev10_Payload = {
     return null;
   }
 }
+
+module.exports.Decoder = AdeunisRF_ARF8084BA_Motev10_Payload;

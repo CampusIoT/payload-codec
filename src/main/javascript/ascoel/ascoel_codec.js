@@ -306,3 +306,5 @@ ASCOELIT_CM868LRTH_Payload = {
         return value;
     }
 }
+
+module.exports.Decoder = ASCOELIT_Generic_Payload;

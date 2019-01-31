@@ -146,3 +146,5 @@ AdeunisRF_ARF8045_Sensor_Payload = {
     return null;
   }
 }
+
+module.exports.Decoder = AdeunisRF_ARF8045_Sensor_Payload;

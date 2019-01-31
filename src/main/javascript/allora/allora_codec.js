@@ -137,3 +137,5 @@ Allora_Payload = {
     return value;
   }
 }
+
+module.exports.Decoder = Allora_Payload;

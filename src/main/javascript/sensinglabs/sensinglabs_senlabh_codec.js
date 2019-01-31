@@ -40,3 +40,5 @@ SensingLabs_SenlabH_Payload = {
   }
 
 }
+
+module.exports.Decoder = SensingLabs_SenlabH_Payload;

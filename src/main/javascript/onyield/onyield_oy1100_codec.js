@@ -46,6 +46,8 @@ OnYield_OY1100_Payload = {
   }
 };
 
+module.exports.Decoder = OnYield_OY1100_Payload;
+
 /*
 var frame= {
   data: "121AD7121A46E919CE",

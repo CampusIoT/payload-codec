@@ -115,3 +115,5 @@ AdeunisRF_Temp_Payload = {
     return null;
   }
 }
+
+module.exports.Decoder = AdeunisRF_Temp_Payload;

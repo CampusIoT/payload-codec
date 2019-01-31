@@ -76,7 +76,7 @@ Elsys_Payload = {
     while(idx < payload.length)
     {
         var dataType = payload[idx++];
-        console.log(idx, "-->", dataType);
+        //console.log(idx, "-->", dataType);
         switch(dataType) {
             case TYPE_TEMPERATURE:
                 v = payload.readInt16BE(idx) / 10.0;
@@ -211,3 +211,5 @@ Elsys_Payload = {
     return null;
   }
 }
+
+module.exports.Decoder = Elsys_Payload;

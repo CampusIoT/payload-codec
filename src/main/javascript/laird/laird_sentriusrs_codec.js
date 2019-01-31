@@ -101,3 +101,5 @@ Laird_Sentrius_RS_Payload = {
         return value;
     }
 }
+
+module.exports.Decoder = Laird_Sentrius_RS_Payload;
