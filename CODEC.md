@@ -4,11 +4,12 @@ Manufacturer website:
 
 Manufacturer logo url:
 
-Networks: LoRaWAN, Sigfox, NB-IoT, LTE-M
+Networks: LoRaWAN, Sigfox, NB-IoT, LTE-M, WMBus
 
-ISM Bands: eu433, eu868, cn470, us915, au915, in865, kr920, as923, w2500
+ISM Bands: eu433, eu868, cn470, us915, au915, in865, kr920, as923, w2400
 
 ## MODEL
+* Application(s):
 * Manufacturer reference(s):
 * Picture(s):
 * Measurements:
