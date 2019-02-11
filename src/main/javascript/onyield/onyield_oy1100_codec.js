@@ -43,26 +43,42 @@ OnYield_OY1100_Payload = {
       humidity4hours: this.decodeHum(p[1],p[2])
     };
     return object;
+  },
+
+  'decodeUpWithTimestamp': function (timestamp,port,payload) {
+    var p = payload;
+    var rows = [
+      {
+        timestamp: timestamp - 4*60*60*1000,
+        object: {
+          // temperature 4 hours before
+          temperature: this.decodeTemp(p[0],p[2]),
+          // humidity 4 hours before
+          humidity: this.decodeHum(p[1],p[2])
+        }
+      },
+      {
+        timestamp: timestamp - 2*60*60*1000,
+        object: {
+          // temperature 2 hours before
+          temperature: this.decodeTemp(p[3],p[5]),
+          // humidity 2 hours before
+          humidity: this.decodeHum(p[4],p[5])
+        }
+      },
+      {
+        timestamp: timestamp,
+        object: {
+          // current temperature
+          temperature: this.decodeTemp(p[6],p[8]),
+          // current humidity
+          humidity: this.decodeHum(p[7],p[8])
+        }
+      }
+    ];
+    return rows;
   }
+
 };
 
 module.exports.Decoder = OnYield_OY1100_Payload;
-
-/*
-var frame= {
-  data: "121AD7121A46E919CE",
-  temperature: -35.6,
-  humidity: 41.4,
-  temperature2hours: 29.2,
-  humidity2hours: 42.9,
-  temperature4hours: 30.1,
-  humidity4hours: 42.3
-};
-
-var p = Buffer.from(frame.data, "hex");
-
-var o = OnYield_OY1100_Payload.decodeUp(0,p);
-
-console.log(JSON.stringify(frame,undefined,2));
-console.log(JSON.stringify(o,undefined,2));
-*/
