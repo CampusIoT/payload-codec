@@ -70,30 +70,31 @@ Semtech_LoRaMote_Payload = {
          // TODO should fix for negative latitude
          // IN THIS VERSION,
         var _latitude = payload.readUInt32BE(8);
-        console.log("_latitude:",_latitude);
+        //console.log("_latitude:",_latitude);
         //_latitude = _latitude & 0x00FFFFFF;
         _latitude = _latitude >> 8;
-        console.log("_latitude:",_latitude);
+        //console.log("_latitude:",_latitude);
         _latitude = (_latitude * 90.0 / MaxNorthPosition).roundUsing(Math.ceil, 5);
-        console.log("_latitude:",_latitude);
+        //console.log("_latitude:",_latitude);
         value["latitude"] = _latitude;
 
         // TODO undefined longitude
         // TODO should fix for negative longitude
         var _longitude = payload.readUInt32BE(11);
-        console.log("_longitude:",_longitude);
+        //console.log("_longitude:",_longitude);
         //_longitude = _longitude & 0x00FFFFFF;
         _longitude = _longitude >> 8;
-        console.log("_longitude:",_longitude);
+        //console.log("_longitude:",_longitude);
         _longitude = (_longitude * 180.0 / MaxEastPosition).roundUsing(Math.ceil, 5);
-        console.log("_longitude:",_longitude);
+        //console.log("_longitude:",_longitude);
         value["longitude"] = _longitude;
 
-
-        // TODO undefined altitude
-        var _altitudeGps = payload.readInt16BE(14); // in m
-        if (_altitudeGps === -256) _altitudeGps = 0;
-        value["altitudeGps"] = _altitudeGps;
+        // altitude
+        if(value.latitude !== undefined && value.longitude !== undefined) {
+          var _altitudeGps = payload.readInt16BE(14); // in m
+          if (_altitudeGps === -256) _altitudeGps = 0;
+          value["altitudeGps"] = _altitudeGps;
+        }
 
     	return value;
     },
@@ -104,8 +105,7 @@ Semtech_LoRaMote_Payload = {
         } else {
             return undefined;
         }
-    }
-  },
+    },
 
   // encodes the given object into an array of bytes
   'encodeDn': function (port,value) {
@@ -113,3 +113,5 @@ Semtech_LoRaMote_Payload = {
     return null;
   }
 }
+
+module.exports.Decoder = Semtech_LoRaMote_Payload;
