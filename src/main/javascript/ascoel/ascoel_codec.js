@@ -279,7 +279,7 @@ ASCOELIT_CM868LRTH_Payload = {
                     }
                     ASCOELIT_Generic_Payload.setBattery(value,payload.readInt8(0));
 
-                    setEvent(value,payload.readUInt8(1));
+                    this.setEvent(value,payload.readUInt8(1));
 
                     value["temperature"] = payload.readFloatLE(2); // TODO BE ou LE ???
                     value["humidity"] = payload.readFloatLE(6); // TODO BE ou LE ???
@@ -292,7 +292,7 @@ ASCOELIT_CM868LRTH_Payload = {
                         break;
                     }
 
-                    setEvent(value,payload.readInt8(0));
+                    this.setEvent(value,payload.readInt8(0));
 
                     value["opCnt"] = payload.readUInt16LE(1); // TODO BE ou LE ???
                     value["temperature"] = payload.readFloatLE(3); // TODO BE ou LE ???
@@ -307,4 +307,4 @@ ASCOELIT_CM868LRTH_Payload = {
     }
 }
 
-module.exports.Decoder = ASCOELIT_Generic_Payload;
+module.exports.Decoder = ASCOELIT_CM868LRTH_Payload;
