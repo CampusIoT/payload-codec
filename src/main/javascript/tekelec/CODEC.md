@@ -7,6 +7,7 @@ Networks: LoRaWAN
 ISM Bands: eu868
 
 ## MODEL
+* Applications: Liquid level monitoring: Fuel – Oil, Kerosene; Water; Waste Oil; Snow (To be tested); Wild water (To be tested)
 * Measurements: distance (ultrasonic), battery level ?
 * Website:
 * Specification:
