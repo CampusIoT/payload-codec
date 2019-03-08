@@ -4,6 +4,12 @@
 
 // https://www.thethingsnetwork.org/wiki/LoRaWAN/Address-Space#address-space-in-lorawan_devices_prefix-assignments
 
+// See LoRaWAN Backend Interfaces v1.0, Section 13: DevAddr Assignment
+
+// There are different types of NetIDs (Types 0 through 7), which differ based on the size of end-device address spacethey support (see LoRaWAN™ Backend Interfaces v1.0 for details). Sponsor members are granted one Type 0 and one Type 3 NetID, contributor members are grantedone Type 3and one Type 6 NetID, and adopter and institutional members are granted one Type 6 NetID.Unused NetID types (Types 1, 2, 4, 5, 7) are reserved for futureuse. They may be used when the currently assigned types are fully consumedor NwkIDs generated fromNetIDs start to collide.
+
+
+// NetID Type 0, Type Prefix Length (MSB) = 1, Type Prefix Value (binary) = 0b, Number of NwkID bits = 6, Number of NwkAddr bits = 25
 const operators_0 = {
   0:['Local','Experimental'],
   2:['Local','Experimental2'],
@@ -60,7 +66,7 @@ const operators_0 = {
   104:['Russian Federation','ER-Telecom Holding']
 };
 
-
+// NetID Type 3, Type Prefix Length (MSB) = 4, Type Prefix Value (binary) = 1110, Number of NwkID bits = 10, Number of NwkAddr bits = 18
 const operators_e0 = {
     0xe000:["RESERVED","RESERVED"],
     0xe002:["Finland","Digita"],
@@ -88,6 +94,7 @@ const operators_e0 = {
 
 }
 
+// NetID Type 6, Type Prefix Length (MSB) = 7, Type Prefix Value (binary) = 1111110, Number of NwkID bits = 15, Number of NwkAddr bits = 10
 const operators_fc00 = {
     0xfc0000:["RESERVED","RESERVED"],
     0xfc0004:["World","Nordic Automation Systems"],
