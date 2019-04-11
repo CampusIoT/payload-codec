@@ -75,6 +75,7 @@ const operators_e0 = {
     0xe00a:["World","IoT Network AS"],
     0xe00c:["Asia, Middle East","Senra Tech"],
     0xe00e:["World","EDF"],
+
     0xe010:["Italy","Unidata"],
     0xe012:["Scandinavia","SEAS-NVE"],
     0xe014:["Scandinavia","Öresundskraft"],
@@ -83,6 +84,7 @@ const operators_e0 = {
     0xe01a:["Thailand","CAT Telecom"],
     0xe01c:["World","Spark"],
     0xe01e:["China","ThingPark China"],
+
     0xe020:["World","Senet"],
     0xe022:["Japan","SenseWay"],
     0xe024:["Philippines","Packetworx"],
@@ -90,8 +92,14 @@ const operators_e0 = {
     0xe028:["China","Alibaba IoT BU"],
     0xe02a:["World","Kerlink"],
     0xe02c:["World","Cisco"],
-    0xe02e:["World","Schneider Electric"]
+    0xe02e:["World","Schneider Electric"],
 
+    0xe030:["World","ZENNER"],
+    0xe032:["Europe","Boston Networks Limited"],
+    0xe034:["Japan","NEC Corporation"],
+    0xe036:["China","Shenzhen Tencent Computer Systems Company Limited"],
+    0xe038:["World","MachineQ/Comcast"],
+    0xe03a:["Japan","NTT (Nippon Telephone and Telegraph)"]
 }
 
 // NetID Type 6, Type Prefix Length (MSB) = 7, Type Prefix Value (binary) = 1111110, Number of NwkID bits = 15, Number of NwkAddr bits = 10
@@ -100,27 +108,52 @@ const operators_fc00 = {
     0xfc0004:["World","Nordic Automation Systems"],
     0xfc0008:["World","ResIOT"],
     0xfc000c:["World","SYSDEV"],
+
     0xfc0010:["China,Canada","Appropolis"],
     0xfc0014:["Japan","Macnica"],
     0xfc0018:["Sweden, Finland, Norway, Denmark","IP-Only"],
     0xfc001c:["Russia Federation","Thingenix LLC"],
+
     0xfc0020:["World","Definium Technologies"],
     0xfc0024:["Germany ,only Darmstadt Region)","ENTEGA AG"],
     0xfc0028:["Japan","SenseWay"],
     0xfc002c:["Tunisia","3S"],
+
     0xfc0030:["World","nFore Technology"],
     0xfc0034:["Philippines","Packetworx"],
     0xfc0038:["Sultanate Oman, Omani","Qatari Telecommunications (Ooredoo)"],
     0xfc003c:["Hungary","Antenna Hungaria Co"],
+
     0xfc0040:["Europe","Trinity College, Dublin"],
     0xfc0044:["World","Digital Nordix AB (DNX)"],
     0xfc0048:["Sweden, Norway","Blink Services"],
     0xfc004c:["Norway","Lyse AS"],
+
     0xfc0050:["Vietnam","VTC Digicom"],
     0xfc0054:["Saudi Arabia","Machines Talk"],
     0xfc0058:["World","Schneider Electric"],
-    0xfc0062:["UK","Connexin"],
-    0xfc00ac:["France","UGA CampusIoT"]
+    0xfc005c:["UK","Connexin"],
+
+    0xfc0060:["World","ZENNER"],
+    0xfc0064:["Serbia","Telekom Srbija"],
+    0xfc0068:["World","REQUEA"],
+    0xfc006c:["Austria","Sensor Network Services"],
+
+    0xfc0070:["Europe","Getraline"],
+    0xfc0074:["Europe","Boston Networks Limited"],
+    0xfc0078:["Italy","Telemar"],
+    0xfc007c:["World","mcf88 SRL"],
+
+    0xfc0080:["Japan","NEC Corporation"],
+    0xfc0084:["World","Hiber"],
+    0xfc0088:["North America","North America: Milandr, Inc."],
+    0xfc008c:["Japan","Green House Co., Ltd."],
+
+    0xfc0090:["Japan","Japan: NTT (Nippon Telephone and Telegraph)"],
+    0xfc0094:["India","International Centre for Free and Open Source Software (ICFOSS)"],
+    0xfc0098:["World","Mirakonta"],
+
+    0xfc00ac:["France","University Grenoble Alps CampusIoT"]
 };
 
 // ===================================
