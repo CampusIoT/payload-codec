@@ -119,7 +119,8 @@ const operators_fc00 = {
     0xfc0050:["Vietnam","VTC Digicom"],
     0xfc0054:["Saudi Arabia","Machines Talk"],
     0xfc0058:["World","Schneider Electric"],
-    0xfc0062:["UK","Connexin"]
+    0xfc0062:["UK","Connexin"],
+    0xfc00ac:["France","UGA CampusIoT"]
 };
 
 // ===================================
@@ -130,18 +131,21 @@ function getOperator(devAddr) {
     let operator;
 
     if(((devAddr >> 16) & 0xffff) === 0xfc00) {
+      // NetID Type 6
         idx = (((devAddr >> 10) << 2) & 0xffffff);
         entry = operators_fc00[idx];
         if(entry) {
             operator = entry[1];
         }
     } else if(((devAddr >> 24) & 0xff) === 0xe0) {
+      // NetID Type 3
         idx = (((devAddr >> 17) << 1) & 0xffff);
         entry = operators_e0[idx];
         if(entry) {
           operator = entry[1];
         }
     } else {
+      // NetID Type 0
         idx = (((devAddr >> 25) << 1) & 0xff);
         entry = operators_0[idx];
         if(entry) {
