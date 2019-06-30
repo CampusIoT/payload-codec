@@ -2,88 +2,88 @@
 // From https://github.com/feross/buffer/blob/master/index.js
 
 function readUInt16LE (buf, offset) {
-  offset = offset >>> 0
-  return buf[offset] | (buf[offset + 1] << 8)
+  offset = offset >>> 0;
+  return buf[offset] | (buf[offset + 1] << 8);
 }
 
 function readUInt16BE (buf, offset) {
-  offset = offset >>> 0
-  return (buf[offset] << 8) | buf[offset + 1]
+  offset = offset >>> 0;
+  return (buf[offset] << 8) | buf[offset + 1];
 }
 
 function readInt16LE (buf, offset) {
-  offset = offset >>> 0
-  var val = buf[offset] | (buf[offset + 1] << 8)
-  return (val & 0x8000) ? val | 0xFFFF0000 : val
+  offset = offset >>> 0;
+  var val = buf[offset] | (buf[offset + 1] << 8);
+  return (val & 0x8000) ? val | 0xFFFF0000 : val;
 }
 
 function readInt16BE (buf, offset) {
-  offset = offset >>> 0
-  var val = buf[offset + 1] | (buf[offset] << 8)
-  return (val & 0x8000) ? val | 0xFFFF0000 : val
+  offset = offset >>> 0;
+  var val = buf[offset + 1] | (buf[offset] << 8);
+  return (val & 0x8000) ? val | 0xFFFF0000 : val;
 }
 
 function readUInt32LE (buf, offset) {
-  offset = offset >>> 0
+  offset = offset >>> 0;
 
   return ((buf[offset]) |
       (buf[offset + 1] << 8) |
       (buf[offset + 2] << 16)) +
-      (buf[offset + 3] * 0x1000000)
+      (buf[offset + 3] * 0x1000000);
 }
 
 function readUInt32BE (buf, offset) {
-  offset = offset >>> 0
+  offset = offset >>> 0;
 
   return (buf[offset] * 0x1000000) +
     ((buf[offset + 1] << 16) |
     (buf[offset + 2] << 8) |
-    buf[offset + 3])
+    buf[offset + 3]);
 }
 
 function readIntLE (buf, offset, byteLength) {
-  offset = offset >>> 0
-  byteLength = byteLength >>> 0
+  offset = offset >>> 0;
+  byteLength = byteLength >>> 0;
 
-  var val = buf[offset]
-  var mul = 1
-  var i = 0
+  var val = buf[offset];
+  var mul = 1;
+  var i = 0;
   while (++i < byteLength && (mul *= 0x100)) {
-    val += buf[offset + i] * mul
+    val += buf[offset + i] * mul;
   }
-  mul *= 0x80
+  mul *= 0x80;
 
-  if (val >= mul) val -= Math.pow(2, 8 * byteLength)
+  if (val >= mul) val -= Math.pow(2, 8 * byteLength);
 
-  return val
+  return val;
 }
 
 function readIntBE (buf, offset, byteLength) {
-  offset = offset >>> 0
-  byteLength = byteLength >>> 0
+  offset = offset >>> 0;
+  byteLength = byteLength >>> 0;
 
-  var i = byteLength
-  var mul = 1
-  var val = buf[offset + --i]
+  var i = byteLength;
+  var mul = 1;
+  var val = buf[offset + --i];
   while (i > 0 && (mul *= 0x100)) {
-    val += buf[offset + --i] * mul
+    val += buf[offset + --i] * mul;
   }
-  mul *= 0x80
+  mul *= 0x80;
 
-  if (val >= mul) val -= Math.pow(2, 8 * byteLength)
+  if (val >= mul) val -= Math.pow(2, 8 * byteLength);
 
-  return val
+  return val;
 }
 
 function readInt8 (buf, offset) {
-  offset = offset >>> 0
-  if (!(buf[offset] & 0x80)) return (buf[offset])
-  return ((0xff - buf[offset] + 1) * -1)
+  offset = offset >>> 0;
+  if (!(buf[offset] & 0x80)) return (buf[offset]);
+  return ((0xff - buf[offset] + 1) * -1);
 }
 
 function readUInt8 (buf, offset) {
-  offset = offset >>> 0
-  return (buf[offset])
+  offset = offset >>> 0;
+  return (buf[offset]);
 }
 
 /*
