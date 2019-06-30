@@ -11,7 +11,7 @@ OnYield_OY1100_Payload = {
   // private function
   'decodeTemp' : function (b0,b2) {
     var temp=(b0<<4)+(b2>>4);
-    if( (temp & 0x0800) == 0) {
+    if( (temp & 0x0800) === 0) {
       temp = temp / 10.0;
     } else {
       temp = (temp | 0xFFFFF000);
