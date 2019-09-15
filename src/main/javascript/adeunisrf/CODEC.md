@@ -37,11 +37,9 @@ ISM Bands: eu868, us915
 * Website:
 * Specification:
 
-## Modbus
-* Class : A, C
-* Measurements: internal temperature, external temperature
-* Website:
-* Specification:
+## All (ie others) : COMFORT, DRY CONTACTS, MOTION, PULSE, Pulse 3, TEMP, Temp 3, REPEATER, DELTA P
+* The decoder relies on the codec Javascript lib provided by Adeunis RF http://codec-adeunis.com/decoder
+
 
 # Disclaimer
 This disclaimer informs readers that the information written in the text belong solely to the author, and not necessarily to the author’s employer, organization, committee or other group or individual. The author try to gather synthetic and accurate information about the manufacturer's endpoints. Endpoint manufacturer are welcome to pull a request in order to correct and to improve this text.

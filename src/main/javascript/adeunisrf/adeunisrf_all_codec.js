@@ -1,8 +1,18 @@
-//*****************************************************************************
-// Javascript codec functions for Adeunis Temp endpoints
-// Authors: Didier Donsez, Vivien Quéma
-// Licence: EPL 1.0
-//*****************************************************************************
+/**
+ *              _                  _     
+ *     /\      | |                (_)    
+ *    /  \   __| | ___ _   _ _ __  _ ___ 
+ *   / /\ \ / _` |/ _ \ | | | '_ \| / __|
+ *  / ____ \ (_| |  __/ |_| | | | | \__ \
+ * /_/    \_\__,_|\___|\__,_|_| |_|_|___/
+ *                                       
+ * 
+ * JavaScript/Node.js library of Adeunis codecs v1.1.1
+ * Supported products: [COMFORT, DRY CONTACTS, MOTION, PULSE, Pulse 3, TEMP, Temp 3, REPEATER, DELTA P]
+ * 
+ * This source code is provided "as-is" and with no warranties. Adeunis is not responsible for its use.
+ * 
+ */
 
 
 "use strict";
@@ -3497,6 +3507,13 @@ var codec;
 })(codec || (codec = {}));
 //# sourceMappingURL=lib.js.map
 
+
+//*****************************************************************************
+// Javascript codec functions for Adeunis Temp endpoints
+// Authors: Didier Donsez, Vivien Quéma
+// Licence: EPL 1.0
+//*****************************************************************************
+
 if (typeof global.codec === 'undefined') {
 	global.codec = codec;
 }
@@ -3516,8 +3533,7 @@ var AdeunisRF_All_Payload = {
 	}
 }
 
-// module.exports.Decoder = AdeunisRF_All_Payload;
-
+module.exports.Decoder = AdeunisRF_All_Payload;
 
 //console.log(AdeunisRF_All_Payload.decodeUp(1, Buffer.from('43400100ac0100ae', 'hex')));
 
