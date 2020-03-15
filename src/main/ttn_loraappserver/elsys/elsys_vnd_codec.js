@@ -11,6 +11,20 @@
   www.elsys.se
   peter@elsys.se
 */
+
+// Constantes d'approximation
+// Voir http://en.wikipedia.org/wiki/Dew_point pour plus de constantes
+var a = 17.27;
+var b = 237.7;
+
+/** Fonction de calcul rapide du point de rosée en fonction de la température et de l'humidité ambiante */
+function dewPoint(celsius, humidity) {
+  // Calcul (approximation)
+  var temp = (a * celsius) / (b + celsius) + Math.log(humidity * 0.01);
+  return (b * temp) / (a - temp);
+}
+
+
 var TYPE_TEMP = 0x01; //temp 2 bytes -3276.8°C -->3276.7°C
 var TYPE_RH = 0x02; //Humidity 1 byte  0-100%
 var TYPE_ACC = 0x03; //acceleration 3 bytes X,Y,Z -128 --> 127 +/-63=1G
@@ -191,6 +205,11 @@ function DecodeElsysPayload(data) {
                 break
         }
     }
+
+    if(obj.temperature && obj.humidity) {
+        obj.dewpoint = dewPoint(obj.temperature, obj.humidity);
+    }
+
     return obj;
 }
 
