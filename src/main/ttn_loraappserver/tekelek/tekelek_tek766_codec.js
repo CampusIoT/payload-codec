@@ -81,14 +81,14 @@ Tekelec_Tek766_Payload = {
         value["sonicrssi2"]=sonicrssi2;
         value["sonicsrc2"]=sonicsrc2;
 
-        var ullage2=readUInt16BE(p,16);
-        var temp2=readInt8(p,18);
-        var sonicrssi2=readUInt8(p,19) >> 4;
-        var sonicsrc2=readUInt8(p,19) & 0x0F;
-        value["ullage3"]=ullage2;
-        value["temperature3"]=temp2;
-        value["sonicrssi3"]=sonicrssi2;
-        value["sonicsrc3"]=sonicsrc2;
+        var ullage3=readUInt16BE(p,16);
+        var temp3=readInt8(p,18);
+        var sonicrssi3=readUInt8(p,19) >> 4;
+        var sonicsrc3=readUInt8(p,19) & 0x0F;
+        value["ullage3"]=ullage3;
+        value["temperature3"]=temp3;
+        value["sonicrssi3"]=sonicrssi3;
+        value["sonicsrc3"]=sonicsrc3;
 
 
         value.series = [];
