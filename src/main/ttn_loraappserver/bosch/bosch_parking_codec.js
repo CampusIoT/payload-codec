@@ -5,6 +5,8 @@
  * https://connectedthings.store/lorawan-sensors/bosch-parking-lot-sensors.html
  *
  * This function was created by Al Bennett at Sensational Systems - al@sensational.systems
+ *
+ * User manual is here https://www.ime.de/shop/www.ime.de/produktdatenblaetter/A41750_2.pdf
  */
 
 function Decoder(bytes, port) {
