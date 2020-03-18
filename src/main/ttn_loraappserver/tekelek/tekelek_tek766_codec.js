@@ -1,5 +1,5 @@
 //*****************************************************************************
-// Javascript codec functions for Tekelec TEK766 endpoints
+// Javascript codec functions for Tekelek TEK766 endpoints
 // Authors: Didier Donsez, Vivien Quéma
 // Licence: EPL 1.0
 //*****************************************************************************
@@ -77,6 +77,32 @@ Tekelec_Tek766_Payload = {
         value["sonicrssi2"]=sonicrssi2;
         value["sonicsrc2"]=sonicsrc2;
 
+        value.series = [];
+        value.series.push ({
+          _timeShift: 0,
+          alarm: value.alarm0,
+          ullage: value.ullage0,
+          temperature: value.temperature0,
+          sonicrssi: value.sonicrssi0,
+          sonicsrc: value.sonicsrc0
+        });
+        value.series.push ({
+          _timeShift: 2*60*60,
+          alarm: value.alarm1,
+          ullage: value.ullage1,
+          temperature: value.temperature1,
+          sonicrssi: value.sonicrssi1,
+          sonicsrc: value.sonicsrc1
+        });
+        value.series.push ({
+          _timeShift: 4*60*60,
+          alarm: value.alarm2,
+          ullage: value.ullage2,
+          temperature: value.temperature2,
+          sonicrssi: value.sonicrssi2,
+          sonicsrc: value.sonicsrc2
+        });
+
 	    	return value;
 
 	    } else if (port===PORT_STATUS && p.length === 18) {
@@ -141,14 +167,31 @@ Tekelec_Tek766_Payload = {
         // var reserved = readUInt8(p,3);
 
         var ullage=readUInt16BE(p,4);
-        var temp=readInt8(p,6);
+        var temperature=readInt8(p,6);
         var sonicrssi=readUInt8(p,7) >> 4;
         var sonicsrc=readUInt8(p,7) & 0x0F;
         value["ullage"]=ullage;
-        value["temperature"]=temp;
+        value["temperature"]=temperature;
         value["sonicrssi"]=sonicrssi;
         value["sonicsrc"]=sonicsrc;
 
+        value.series = [];
+        value.series.push ({
+          _timeShift: 0,
+          alarm: value.alarm0,
+          ullage: value.ullage,
+          temperature: value.temperature,
+          sonicrssi: value.sonicrssi,
+          sonicsrc: value.sonicsrc
+        });
+        value.series.push ({
+          _timeShift: 2*60*60,
+          alarm: value.alarm1
+        });
+        value.series.push ({
+          _timeShift: 4*60*60,
+          alarm: value.alarm2
+        });
         return value;
 
 	    } else {
