@@ -20,7 +20,11 @@ function readUInt8 (buf, offset) {
   return (buf[offset])
 }
 
+// Default value
+const TX_PERIOD = 6*60*60; // in sceonds
 
+
+// Ports
 const PORT_SONIC_MEASUREMENT = 0x10;
 const PORT_STATUS = 0x30;
 const PORT_ALARM_NOTOFICATION = 0x45;
@@ -77,30 +81,47 @@ Tekelec_Tek766_Payload = {
         value["sonicrssi2"]=sonicrssi2;
         value["sonicsrc2"]=sonicsrc2;
 
+        var ullage2=readUInt16BE(p,16);
+        var temp2=readInt8(p,18);
+        var sonicrssi2=readUInt8(p,19) >> 4;
+        var sonicsrc2=readUInt8(p,19) & 0x0F;
+        value["ullage3"]=ullage2;
+        value["temperature3"]=temp2;
+        value["sonicrssi3"]=sonicrssi2;
+        value["sonicsrc3"]=sonicsrc2;
+
+
         value.series = [];
         value.series.push ({
           _timeShift: 0,
-          alarm: value.alarm0,
+          alarm0: value.alarm0,
+          alarm1: value.alarm1,
+          alarm2: value.alarm2,
           ullage: value.ullage0,
           temperature: value.temperature0,
           sonicrssi: value.sonicrssi0,
           sonicsrc: value.sonicsrc0
         });
         value.series.push ({
-          _timeShift: -2*60*60, // 2 hours ago (in seconds)
-          alarm: value.alarm1,
+          _timeShift: -TX_PERIOD, // 6 hours ago (in seconds)
           ullage: value.ullage1,
           temperature: value.temperature1,
           sonicrssi: value.sonicrssi1,
           sonicsrc: value.sonicsrc1
         });
         value.series.push ({
-          _timeShift: -4*60*60, // 4 hours ago (in seconds)
-          alarm: value.alarm2,
+          _timeShift: -2*TX_PERIOD , // 12 hours ago (in seconds)
           ullage: value.ullage2,
           temperature: value.temperature2,
           sonicrssi: value.sonicrssi2,
           sonicsrc: value.sonicsrc2
+        });
+        value.series.push ({
+          _timeShift: -3*TX_PERIOD , // 18 hours ago (in seconds)
+          ullage: value.ullage3,
+          temperature: value.temperature3,
+          sonicrssi: value.sonicrssi3,
+          sonicsrc: value.sonicsrc3
         });
 
 	    	return value;
@@ -178,19 +199,13 @@ Tekelec_Tek766_Payload = {
         value.series = [];
         value.series.push ({
           _timeShift: 0,
-          alarm: value.alarm0,
+          alarm0: value.alarm0,
+          alarm1: value.alarm1,
+          alarm2: value.alarm2,
           ullage: value.ullage,
           temperature: value.temperature,
           sonicrssi: value.sonicrssi,
           sonicsrc: value.sonicsrc
-        });
-        value.series.push ({
-          _timeShift: 2*60*60, // 2 hours ago (in seconds)
-          alarm: value.alarm1
-        });
-        value.series.push ({
-          _timeShift: 4*60*60, // 4 hours ago (in seconds)
-          alarm: value.alarm2
         });
         return value;
 
