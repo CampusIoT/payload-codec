@@ -21,13 +21,13 @@ function readUInt8 (buf, offset) {
 }
 
 // Default value
-const TX_PERIOD = 6*60*60; // in sceonds
+var TX_PERIOD = 6*60*60; // in sceonds
 
 
 // Ports
-const PORT_SONIC_MEASUREMENT = 0x10;
-const PORT_STATUS = 0x30;
-const PORT_ALARM_NOTOFICATION = 0x45;
+var PORT_SONIC_MEASUREMENT = 0x10;
+var PORT_STATUS = 0x30;
+var PORT_ALARM_NOTOFICATION = 0x45;
 
 Tekelec_Tek766_Payload = {
 
