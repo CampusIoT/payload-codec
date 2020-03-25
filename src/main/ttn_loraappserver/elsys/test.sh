@@ -1,3 +1,10 @@
 #/bin/bash
 
-node test.js ./elsys_vnd_codec.js "0100e202290400270506060308070d62" '{"temperature":22.6,"humidity":41,"light":39,"motion":6,"co2":776,"vdd":3426}'
+FILE=$1
+CODEC="elsys_vnd_codec.js"
+DATAENCODING="hex"
+while IFS=";" read -r fport data object
+do
+    echo $fport $data $object
+    node test.js $CODEC $DATAENCODING $fport $data $object
+done <  <(tail -n +2 "${FILE}")
