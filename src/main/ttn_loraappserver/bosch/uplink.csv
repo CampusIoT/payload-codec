@@ -1,0 +1,7 @@
+fPort;data;object
+6;AAAAAJkCANEAAQ==;
+6;eQAAAJoDAM0AAg==;
+6;AAAAAJkCANEABA==;{"packet_type":"Unknown"}
+3;AAAAAJkCANEAAwAAAB0CAgA=;{"firmware_version":"0.29.2","occupied":false,"packet_type":"Startup","reset_reason":"Power On"}
+3;AAAAAJkCANEABQAAAB0CAgA=",{"firmware_version":"0.29.2","occupied":false,"packet_type":"Startup","reset_reason":"Power On"}
+1;AQ==;{"occupied":true,"packet_type":"Status"}
