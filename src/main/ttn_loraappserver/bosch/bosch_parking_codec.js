@@ -9,6 +9,11 @@
  * User manual is here https://www.bosch-connectivity.com/media/product_detail_pls/parking-lot-sensor-communication-interface.pdf
  */
 
+// For TTN
+// Decode decodes an array of bytes into an object.
+//  - bytes is an array of bytes, e.g. [225, 230, 255, 0]
+//  - fPort contains the LoRaWAN fPort number
+// The function must return an object, e.g. {"temperature": 22.5}
 function Decoder(bytes, port) {
 
     var decoded = {
@@ -78,14 +83,6 @@ function Decode(fPort, bytes) {
     return Decoder(bytes, fPort)
 }
 
-// For TTN
-// Decode decodes an array of bytes into an object.
-//  - bytes is an array of bytes, e.g. [225, 230, 255, 0]
-//  - fPort contains the LoRaWAN fPort number
-// The function must return an object, e.g. {"temperature": 22.5}
-function Decoder(bytes, fPort) {
-  return Decode(fPort, bytes);
-}
 
   //module.exports.Decoder = Decoder;
   //module.exports.Decode = Decode;
