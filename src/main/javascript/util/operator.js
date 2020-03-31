@@ -175,8 +175,25 @@ const operators_fc00 = {
     0xfc00a8:["World","Ursalink"],
     0xfc00ac:["France","University Grenoble Alps CampusIoT"],
 
-    0xfc00b0:["North America, South America","Carnegie Technologies, LLC"]
+    0xfc00b0:["North America, South America","Carnegie Technologies, LLC"],
+    0xfc00b4:["Greece","IoTech"],
+    0xfc00b8:["USA","Spectrum"],
+    0xfc00bc:["France","Afnic"],
+
+    0xfc00c0:["South Africa, Europe,America","Nerospec"],
+    0xfc00c4:["India, ASEAN & SAARC Region","Sehaj Synergy Technologies Pvt Ltd"],
+    0xfc00c8:["World","Microshare Inc."],
+    0xfc00cc:["Switzerland","HEIG-VD"],
+
+    0xfc00d0:["Germany","Unitymedia"],
+    0xfc00d4:["World","Paige Wireless"],
+    0xfc00d8:["Peru","Desarrollo de Infraestructura de Telecomunicaciones Peru (Infratel Peru)"],
+    0xfc00dc:["Italy","Alperia Fiber"],
+
+    0xfc00e0:["Republic of Korea","First Snow Co., Ltd"]
+
 };
+
 
 // ===================================
 
