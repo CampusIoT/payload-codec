@@ -65,10 +65,8 @@ AdeunisRF_ARF8123AA_FieldTestDevice_Payload = {
                           + (((p[index]&0xF0) >> 4) /1000)
                           ;
           var latitude = (latdegrees + (latminutes / 60));
-          if(latitude <= 90) {
-            if((p[index++]&0x01)==1) latitude=-latitude;
-            value["latitude"]=latitude;
-          }
+          if((p[index++]&0x01)==1) latitude=-latitude;
+          value["latitude"]=latitude;
 
           var londegrees=(((p[index]&0xF0) >> 4) * 100) + ((p[index++]&0x0F)* 10) + ((p[index]&0xF0) >> 4);
           var lonminutes= ((p[index++]&0x0F) * 10)
@@ -77,10 +75,8 @@ AdeunisRF_ARF8123AA_FieldTestDevice_Payload = {
                           + (((p[index]&0xF0) >> 4) /100)
                           ;
           var longitude = (londegrees + (lonminutes / 60));
-          if(longitude <= 180) {
-            if((p[index++]&0x01)==1) longitude=-longitude;
-            value["longitude"]=longitude;
-          }
+          if((p[index++]&0x01)==1) longitude=-longitude;
+          value["longitude"]=longitude;
 
           var gpsquality = readUInt8(p,index++);
           value["satellites"]=gpsquality&0x0F;
@@ -107,8 +103,8 @@ AdeunisRF_ARF8123AA_FieldTestDevice_Payload = {
     if((flags & 0x01) !== 0) {
           var rssi = readUInt8(p,index++); // in dB absolute value
           var snr = readInt8(p,index++); // in dB, signed
-          value["rssi"]= - rssi;
-          value["snr"]=snr;
+          value["downlinkRssi"]= - rssi;
+          value["downlinkSnr"]=snr;
     }
 
     return value;
@@ -121,7 +117,7 @@ AdeunisRF_ARF8123AA_FieldTestDevice_Payload = {
   }
 }
 
-// For TTN
+// For LoRaServer.io
 // Decode decodes an array of bytes into an object.
 //  - bytes is an array of bytes, e.g. [225, 230, 255, 0]
 //  - fPort contains the LoRaWAN fPort number
