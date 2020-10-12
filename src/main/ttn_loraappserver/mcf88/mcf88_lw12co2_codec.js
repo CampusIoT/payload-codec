@@ -1,8 +1,6 @@
 
 /* 
- * Decoder function for The Things Network to unpack the payload of MCF88's LW12CO2
- * More info on the sensors/buy online:
- * https://connectedthings.store/gb/home-and-office-sensors/mcf88-lorawan-indoor-environmental-sensor-with-voc-lux-and-co2.html
+ * Decoder function for The Things Network to unpack the payload of MCF88's LW12CO2 https://www.mcf88.it/prodotto/mcf-lw12co2/
  * This function was created by Al Bennett at Sensational Systems - al@sensational.systems
  */
 
@@ -21,6 +19,10 @@ function dewPoint(celsius, humidity) {
 }
 
 
+// For TTN
+// Decode decodes an array of bytes into an object.
+//  - bytes is an array of bytes, e.g. [225, 230, 255, 0]
+//  - fPort contains the LoRaWAN fPort number
 function Decoder(bytes, fport) {
 
     var MEASUREMENT_PERIOD = 15*60; // in seconds
