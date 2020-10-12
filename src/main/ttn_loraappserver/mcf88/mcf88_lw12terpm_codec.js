@@ -3,6 +3,7 @@
  * Decoder function for The Things Network to unpack the payload
  * of MCF88's LW12TERPM (LoRaWAN® outdoor PM and environmental sensor)
  * https://www.mcf88.it/prodotto/mcf-lw12terpm/
+ * Author: Didier DONSEZ, Université Grenoble Alpes, LIG + Polytech Grenoble
  */
 
 // Constantes d'approximation
