@@ -18,7 +18,10 @@ function dewPoint(celsius, humidity) {
   return (b * temp) / (a - temp);
 }
 
-
+// For TTN
+// Decode decodes an array of bytes into an object.
+//  - bytes is an array of bytes, e.g. [225, 230, 255, 0]
+//  - fPort contains the LoRaWAN fPort number
 function Decoder(bytes, fport) {
 
     var MEASUREMENT_PERIOD = 15*60; // in seconds
