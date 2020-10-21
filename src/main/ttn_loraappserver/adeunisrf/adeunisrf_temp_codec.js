@@ -131,14 +131,15 @@ function Decoder(bytes, fPort) {
   return AdeunisRF_Temp_Payload.decodeUp(fPort,bytes);
 }
 
-// For LoRaServer.io
-// Decode decodes an array of bytes into an object.
-//  - fPort contains the LoRaWAN fPort number
-//  - bytes is an array of bytes, e.g. [225, 230, 255, 0]
-// The function must return an object, e.g. {"temperature": 22.5}
-function Decode(fPort, bytes) {
-  return Decoder(bytes, fPort)
-}
-
-//module.exports.Decoder = Decoder;
-//module.exports.Decode = Decode;
+  // For chirpstack.io
+  // Decode decodes an array of bytes into an object.
+  //  - fPort contains the LoRaWAN fPort number
+  //  - bytes is an array of bytes, e.g. [225, 230, 255, 0]
+  // The function must return an object, e.g. {"temperature": 22.5}
+  function Decode(fPort, bytes, variables) {
+    return Decoder(bytes, fPort)
+  }
+  
+  //module.exports.Decoder = Decoder;
+  //module.exports.Decode = Decode;
+  
