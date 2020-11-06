@@ -10,7 +10,14 @@
   Use it as it is or remove the bugs :)
   www.elsys.se
   peter@elsys.se
+
+  https://elsys.se/public/documents/Sensor_payload.pdf
+  https://www.elsys.se/en/elsys-payload/
+
 */
+
+// Extra data : dewpoint
+// Added by Didier DONSEZ
 
 // Constantes d'approximation
 // Voir http://en.wikipedia.org/wiki/Dew_point pour plus de constantes
@@ -24,6 +31,185 @@ function dewPoint(celsius, humidity) {
   return (b * temp) / (a - temp);
 }
 
+// ELSYS SETTINGS DECODER (Default fPort = 6)
+// Added by Didier DONSEZ
+
+var SETTINGS_HEADER = 0x3E;
+
+function bool(a) {
+	return a[0] ? "true" : "false";
+}
+
+function uint(a) {
+	if(a.length == 1) return a[0];
+	if(a.length == 2) return (a[0]<<8)|a[1];
+	if(a.length == 4) return (a[0]<<24)|(a[1]<<16)|(a[2]<<8)|a[3];
+  return a;
+}
+
+function extcfg(a) {
+	var cfg = a[0];
+  switch(cfg) {
+  	case 1:
+    	return "Analog";
+  	case 2:
+    	return "Pulse (pulldown)";
+  	case 3:
+    	return "Pulse (pullup)";
+  	case 4:
+    	return "Abs pulse (pulldown)";
+  	case 5:
+    	return "Abs pulse (pullup)";
+  	case 6:
+    	return "1-wire temp DS18B20";
+  	case 7:
+    	return "Switch NO";
+  	case 8:
+    	return "Switch NC";
+  	case 9:
+    	return "Digital";
+  	case 10:
+    	return "SRF-01";
+  	case 11:
+    	return "Decagon";
+  	case 12:
+    	return "Waterleak";
+  	case 13:
+    	return "Maxbotix ML738x";
+  	case 14:
+    	return "GPS";
+  	case 15:
+    	return "1-wire temp + Switch NO";
+  	case 16:
+    	return "Analog 0-3V";
+  	case 17:
+    	return "ADC module (pt1000)";
+  }
+  return a;
+}
+
+function sensor(a) {
+    var t = a[0];
+    switch(t) {
+        case 0:
+            return "Unknown";
+        case 1:
+            return "ESM5k";
+        case 10:
+            return "ELT1";
+        case 11:
+            return "ELT1HP";
+        case 12:
+            return "ELT2HP";
+        case 13:
+            return "ELT Lite";
+        case 20:
+            return "ERS";
+        case 21:
+            return "ERS CO2";
+        case 22:
+            return "ERS Lite";
+        case 23:
+            return "ERS Eye";
+        case 24:
+            return "ERS Desk";
+        case 25:
+            return "ERS Sound";
+        case 30:
+            return "EMS";
+
+    }
+    return a;
+}
+
+var settings = [
+  {size: 16, type: 1, name: 'AppSKey', hex:true, parse: null},
+  {size: 16, type: 2, name: 'NwkSKey', hex:true, parse: null},
+  {size: 16, type: 4, name: 'AppEui', hex:true, parse: null},
+  {size: 4, type: 6, name: 'DevAddr', hex:true, parse: null},
+
+  {size: 1, type: 7, name: 'OTA', parse: bool},
+  {size: 1, type: 8, name: 'Port', parse: uint},
+  {size: 1, type: 9, name: 'Mode', parse: uint},
+  {size: 1, type: 10, name: 'ACK', parse: bool},
+  {size: 1, type: 11, name: 'DrDef', parse: uint},
+  {size: 1, type: 13, name: 'DrMin', parse: uint},
+  {size: 1, type: 12, name: 'DrMax', parse: uint},
+
+  {size: 1, type: 16, name: 'ExtCfg', parse: extcfg},
+  {size: 1, type: 17, name: 'PirCfg', parse: uint},
+  {size: 1, type: 18, name: 'Co2Cfg', parse: uint},
+  {size: 4, type: 19, name: 'AccCfg', parse: null},
+  {size: 4, type: 20, name: 'SplPer', parse: uint},
+  {size: 4, type: 21, name: 'TempPer', parse: uint},
+  {size: 4, type: 22, name: 'RhPer', parse: uint},
+  {size: 4, type: 23, name: 'LightPer', parse: uint},
+  {size: 4, type: 24, name: 'PirPer', parse: uint},
+  {size: 4, type: 25, name: 'Co2Per', parse: uint},
+  {size: 4, type: 26, name: 'ExtPer', parse: uint},
+  {size: 4, type: 27, name: 'ExtPwrTime', parse: uint},
+  {size: 4, type: 28, name: 'TriggTime', parse: uint},
+  {size: 4, type: 29, name: 'AccPer', parse: uint},
+  {size: 4, type: 30, name: 'VddPer', parse: uint},
+  {size: 4, type: 31, name: 'SendPer', parse: uint},
+  {size: 4, type: 32, name: 'Lock', parse: uint},
+  {size: 4, type: 34, name: 'Link', parse: null},
+  {size: 4, type: 33, name: 'KeyWdg', parse: uint},
+  {size: 4, type: 35, name: 'PressPer', parse: uint},
+  {size: 4, type: 36, name: 'SoundPer', parse: uint},
+  {size: 1, type: 37, name: 'Plan', parse: uint},
+  {size: 1, type: 38, name: 'SubBand', parse: uint},
+  {size: 1, type: 39, name: 'LBT', parse: bool},
+  {size: 1, type: 40, name: 'LedConfig', parse: uint},
+  {size: 4, type: 42, name: 'WaterPer', parse: uint},
+  {size: 4, type: 43, name: 'ReedPer', parse: uint},
+  {size: 4, type: 44, name: 'ReedCfg', parse: uint},
+  {size: 1, type: 245, name: 'Sensor', parse: sensor},
+  {size: 1, type: 250, name: 'External', parse: null},
+  {size: 2, type: 251, name: 'Version', parse: uint},
+  {size: 4, type: 252, name: 'Sleep', parse: null},
+  //{size: 0, type: 253, name: 'Generic', parse: null},
+  {size: 0, type: 254, name: 'Reboot', parse: null}
+];
+
+function DecodeElsysSettings(bytes) {
+
+  var payload = {};
+
+  var i = 0;
+  if(bytes[i++] != SETTINGS_HEADER) {
+  	return makeError("incorrect header");
+  }
+  var size = bytes[i++];
+  while (i < bytes.length) {
+    var type = bytes[i++];
+
+    var setting = settings.filter(function(s) { return s.type == type; });
+    if(setting.length == 0) {
+    	return makeError("unknown setting type; " + type + " at offset " + i);
+    }
+    setting = setting[0];
+    var d = bytes.slice(i, i+setting.size);
+    if(setting.parse == null) {
+    	payload[setting.name] = d;
+    } else {
+    	payload[setting.name] = setting.parse(d);
+    }
+    i += setting.size;
+  }
+
+  return {
+    "settings": payload 
+  };
+}
+
+function makeError(desc) {
+  return {
+    "error": desc
+  };
+}
+
+// ELSYS DATA DECODER (Default fPort = 5)
 
 var TYPE_TEMP = 0x01; //temp 2 bytes -3276.8°C -->3276.7°C
 var TYPE_RH = 0x02; //Humidity 1 byte  0-100%
@@ -53,6 +239,12 @@ var TYPE_EXT_TEMP2 = 0x19;  //2bytes -3276.5C-->3276.5C
 var TYPE_EXT_DIGITAL2 = 0x1A;  // 1bytes value 1 or 0 
 var TYPE_EXT_ANALOG_UV = 0x1B; // 4 bytes signed int (uV)
 var TYPE_DEBUG = 0x3D;  // 4bytes debug 
+
+// Sensor settings sent to server at startup (First package). Sent on Port+1. See sensor settings document for more information.
+var TYPE_SETTINGS = SETTINGS_HEADER;  // nbytes debug 
+
+
+
 function bin16dec(bin) {
     var num = bin & 0xFFFF;
     if (0x8000 & num)
@@ -200,6 +392,10 @@ function DecodeElsysPayload(data) {
                 obj.analogUv = (data[i + 1] << 24) | (data[i + 2] << 16) | (data[i + 3] << 8) | (data[i + 4]);
                 i += 4;
                 break
+
+            case TYPE_SETTINGS: //Sensor settings
+                return DecodeElsysSettings(data);
+
             default: //somthing is wrong with data
                 i = data.length;
                 break
