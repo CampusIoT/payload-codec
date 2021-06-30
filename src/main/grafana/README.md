@@ -4,7 +4,7 @@
 
 > Database is InfluxDB (`default`)
 
-> Measurements are produced by the codec difined into https://github.com/CampusIoT/payload-codec/tree/master/src/main/ttn_chirpstack
+> Measurements are produced by the codec defined into https://github.com/CampusIoT/payload-codec/tree/master/src/main/ttn_chirpstack
 
 ## Examples
 
