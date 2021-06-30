@@ -10,3 +10,4 @@
 
 https://github.com/CampusIoT/campusiot.github.io/tree/master/images
 
+![EMS Tour Perret](https://raw.githubusercontent.com/CampusIoT/campusiot.github.io/master/images/grafana-ems-03-tour-perret.png)
