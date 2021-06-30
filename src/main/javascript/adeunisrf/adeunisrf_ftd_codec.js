@@ -4,25 +4,8 @@
 // Licence: EPL 1.0
 //*****************************************************************************
 
-function readInt16BE (buf, offset) {
-  offset = offset >>> 0
-  var val = buf[offset + 1] | (buf[offset] << 8)
-  return (val & 0x8000) ? val | 0xFFFF0000 : val
-}
-
-function readInt8 (buf, offset) {
-  offset = offset >>> 0
-  if (!(buf[offset] & 0x80)) return (buf[offset])
-  return ((0xff - buf[offset] + 1) * -1)
-}
-
-function readUInt8 (buf, offset) {
-  offset = offset >>> 0
-  return (buf[offset])
-}
-
-// https://www.adeunis.com/wp-content/uploads/2017/08/FTD_LoRaWAN_EU863-870_UG_FR_GB_V1.2.2.pdf
-AdeunisRF_ARF8123AA_FieldTestDevice_Payload = {
+// https://www.adeunis.com/wp-content/uploads/2017/08/ARF8123AA_ADEUNIS_LORAWAN_FTD_UG_V1.2.0_FR_GB.pdf
+AdeunisRF_ARF8123AA_FieldTester_Payload = {
   'decodeUp': function (port,payload) {
 
       var value = {}
@@ -38,8 +21,8 @@ AdeunisRF_ARF8123AA_FieldTestDevice_Payload = {
       Bit 1 : Présence de l’information du niveau de batterie
       Bit 0 : Présence de l’informaiotn RSSI et SNR
       */
-
-    var flags = p[0];
+        
+    var flags = p.readUInt8(0);
 
     var accelerometerTrigger=((flags&0x40) !== 0);
     value["accelerometerTrigger"]=accelerometerTrigger;
@@ -52,7 +35,7 @@ AdeunisRF_ARF8123AA_FieldTestDevice_Payload = {
     // decode Adeunis payload
 
     if((flags & 0x80) !== 0) {
-          var temperature = readInt8(p,index++); // in °C
+          var temperature = p.readInt8(index++); // in °C
           value["temperature"]=temperature;
         }
 
@@ -65,10 +48,8 @@ AdeunisRF_ARF8123AA_FieldTestDevice_Payload = {
                           + (((p[index]&0xF0) >> 4) /1000)
                           ;
           var latitude = (latdegrees + (latminutes / 60));
-          if(latitude <= 90) {
-            if((p[index++]&0x01)==1) latitude=-latitude;
-            value["latitude"]=latitude;
-          }
+          if((p[index++]&0x01)==1) latitude=-latitude;
+          value["latitude"]=latitude;
 
           var londegrees=(((p[index]&0xF0) >> 4) * 100) + ((p[index++]&0x0F)* 10) + ((p[index]&0xF0) >> 4);
           var lonminutes= ((p[index++]&0x0F) * 10)
@@ -77,38 +58,36 @@ AdeunisRF_ARF8123AA_FieldTestDevice_Payload = {
                           + (((p[index]&0xF0) >> 4) /100)
                           ;
           var longitude = (londegrees + (lonminutes / 60));
-          if(longitude <= 180) {
-            if((p[index++]&0x01)==1) longitude=-longitude;
-            value["longitude"]=longitude;
-          }
+          if((p[index++]&0x01)==1) longitude=-longitude;
+          value["longitude"]=longitude;
 
-          var gpsquality = readUInt8(p,index++);
+          var gpsquality = p.readUInt8(index++);
           value["satellites"]=gpsquality&0x0F;
           value["quality"]=gpsquality >> 4;
 
       }
 
     if((flags & 0x08) !== 0) {
-          var uplinkCounter=readUInt8(p,index++);
+          var uplinkCounter=p.readUInt8(index++);
           value["uplinkCounter"]=uplinkCounter;
       }
 
     if((flags & 0x04) !== 0) {
-          var downlinkCounter=readUInt8(p,index++);
+          var downlinkCounter=p.readUInt8(index++);
           value["downlinkCounter"]=downlinkCounter;
       }
 
     if((flags & 0x02) !== 0) {
-          var batteryVoltage = readInt16BE(p,index); // in mV
+          var batteryVoltage = p.readInt16BE(index); // in mV
           index = index + 2;
           value["batteryVoltage"]=batteryVoltage;
     }
 
     if((flags & 0x01) !== 0) {
-          var rssi = readUInt8(p,index++); // in dB absolute value
-          var snr = readInt8(p,index++); // in dB, signed
-          value["rssi"]= - rssi;
-          value["snr"]=snr;
+          var rssi = p.readUInt8(index++); // in dB absolute value
+          var snr = p.readUInt8(index++); // in dB, signed
+          value["dn_rssi"]= - rssi;
+          value["dn_snr"]=snr;
     }
 
     return value;
