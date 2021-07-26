@@ -22,3 +22,7 @@ Soon
 ## TODO: LoRaWAN® App Payload Codec API
 Soon
 * Javascript codecs will (probably) implement 3 functions: ```decodeUL(bytes,fport)```, ```decodeDL(bytes,fport)``` and ```encodeDL(bytes,fport)```.
+
+
+## See also
+* [Helium Console Decoder](https://github.com/helium/console-decoders)
