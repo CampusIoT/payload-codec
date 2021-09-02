@@ -1,6 +1,6 @@
 # Codec for MClimate manufacturer
 
-Manufacturer website: https://sensing-labs.com/products/lorawan-sensors/
+Manufacturer website: https://mclimate.eu
 
 Documentation: https://docs.mclimate.eu/mclimate-lorawan-devices/
 
